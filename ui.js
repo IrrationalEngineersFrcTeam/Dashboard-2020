@@ -39,10 +39,12 @@ var ui = {
 
 
 
+
 NetworkTables.addGlobalListener(onValueChanged, true);
 NetworkTables.addRobotConnectionListener(onRobotConnection, true);
 NetworkTables.addRobotConnectionListener(targetFound, true);
-NetworkTables.putValue('/limelight/stream', 1);
+
+NetworkTables.putValue('/limelight/stream', 2);
 
 function onRobotConnection(connected) {
     var state = connected ?   'Robot connected' : 'Robot disconnected';
@@ -55,7 +57,6 @@ function onTargetFound(targetFound) {
 	if(targetFound){
 		
 		ui.target.innerHTML = 'Target acquired 👀';
-		'No target ðŸŒš';
 		console.log(targState);
 		ui.target.style.color = #00d500;
 	}
@@ -148,6 +149,7 @@ function onTargetFound(targetFound) {
 };
 
 ui.button1.onclick = function () {
+	
 
     ui.Minimap.indicator.style.transform = "translateY(2px)"
 };
