@@ -42,7 +42,7 @@ var ui = {
 
 NetworkTables.addGlobalListener(onValueChanged, true);
 NetworkTables.addRobotConnectionListener(onRobotConnection, true);
-NetworkTables.addRobotConnectionListener(targetFound, true);
+
 
 NetworkTables.putValue('/limelight/stream', 2);
 
@@ -52,25 +52,20 @@ function onRobotConnection(connected) {
     ui.robotConnection.innerHTML = state;
 }
 
-function onTargetFound(targetFound) {
-    var targState;
-	if(targetFound){
+NetworkTables.addRobotConnectionListener(function(targetFound) {
+    if(targetFound == true) {
 		
-		ui.target.innerHTML = 'Target acquired 👀';
-		console.log(targState);
-		ui.target.style.color = #00d500;
-	}
+       document.getElementById('target').innerHTML = 'Target acquired 👀';
+	   document.getElementById('target').style.color = #00d500;
+	   
+    } else {
+		
+		document.getElementById('target').innerHTML = 'Target acquired 👀';
+		document.getElementById('target').style.color = #00d500;
+    }
+}//, true);
+		
 	
-	else {
-		
-		ui.target.innerHTML = 'No target ðŸŒš';
-		console.log(targState);
-		ui.target.style.color = #000000;
-	}
-		
-    
-    ui.target.innerHTML = targState;
-}
 
     function onValueChanged(key, value) {
         // Sometimes, NetworkTables will pass booleans as strings. This corrects for that.

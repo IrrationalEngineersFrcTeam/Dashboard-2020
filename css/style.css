@@ -133,8 +133,8 @@ button:active {
     position: fixed;
     top: 15vh;
     left: 23vw;
-    width: 47vw;
-    height: 65vh;
+    width: 47vw; /*47*/
+    height: 65vh; /*65*/
     overflow: hidden;
     background-color: 0;
     background-size: cover;
