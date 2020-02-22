@@ -3,6 +3,14 @@
 
 
 var ui = {
+	
+
+ui.button1.onclick = function () {
+	
+	document.getElementById('target').innerHTML = 'Target acquired 👀';	
+	
+};
+
 
 
     timer: document.getElementById('timer'),
@@ -38,13 +46,10 @@ var ui = {
 };
 
 
-
-
 NetworkTables.addGlobalListener(onValueChanged, true);
 NetworkTables.addRobotConnectionListener(onRobotConnection, true);
 
 
-NetworkTables.putValue('/limelight/stream', 2);
 
 function onRobotConnection(connected) {
     var state = connected ?   'Robot connected' : 'Robot disconnected';
@@ -60,12 +65,17 @@ NetworkTables.addRobotConnectionListener(function(targetFound) {
 	   
     } else {
 		
-		document.getElementById('target').innerHTML = 'Target acquired 👀';
+		document.getElementById('target').innerHTML = 'No target';
 		document.getElementById('target').style.color = #00d500;
     }
 }//, true);
 		
-	
+
+		if(NetworkTables.isRobotConnected === true) {
+			
+				document.getElementById('target').innerHTML = 'No target';
+				
+		}
 
     function onValueChanged(key, value) {
         // Sometimes, NetworkTables will pass booleans as strings. This corrects for that.
@@ -143,11 +153,8 @@ NetworkTables.addRobotConnectionListener(function(targetFound) {
 
 };
 
-ui.button1.onclick = function () {
-	
 
-    ui.Minimap.indicator.style.transform = "translateY(2px)"
-};
+}
 
 
 

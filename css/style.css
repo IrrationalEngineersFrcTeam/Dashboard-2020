@@ -132,9 +132,9 @@ button:active {
     padding: 0;
     position: fixed;
     top: 15vh;
-    left: 23vw;
-    width: 47vw; /*47*/
-    height: 65vh; /*65*/
+    left: 26vw;
+    width: 640px; /*47*/
+    height: 480px; /*65*/
     overflow: hidden;
     background-color: 0;
     background-size: cover;
@@ -142,14 +142,13 @@ button:active {
     border-width: 5px;
     border-color: #f88147;
     background-image: url('http://10.62.39.12:5800');
-	/*background-image: url('http://10.62.39.12:1181/stream.mjpg');*/
 
  }
 
 #robotConnection {
 
-    bottom: 5vh;
-    left: 60vh;
+    bottom: -1vh;
+    left: 67vh;
     backgrond-color: #232323;
     color: orange;
     hight: 15vh;
@@ -161,17 +160,7 @@ button:active {
 
 }
 
-#buttonGroup1 {
 
-    text-align: center;
-    display: inline;
-    height: 40vh;
-    width: 20vh;
-    bottom: 20vh;
-    font-size: 1vh;
-    color: orange;
-
-}
 
 #button1{
 
@@ -179,17 +168,6 @@ button:active {
     border-color: #f88147;
 }
 
-#button2{
-
-    border: outset;
-    border-color: #f88147;
-}
-
-#button3{
-
-    border: outset;
-    border-color: #f88147;
-}
 
 
 
