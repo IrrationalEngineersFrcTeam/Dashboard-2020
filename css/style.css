@@ -127,12 +127,13 @@ button:active {
     text-align: center;
 
 }
+
  #camera {
 
     padding: 0;
     position: fixed;
     top: 15vh;
-    left: 26vw;
+    left: 362px;
     width: 640px; /*47*/
     height: 480px; /*65*/
     overflow: hidden;
@@ -142,8 +143,21 @@ button:active {
     border-width: 5px;
     border-color: #f88147;
     background-image: url('http://10.62.39.12:5800');
-
+	text-align: center
+	
  }
+ 
+ #crosshair {
+	position: relative;
+	top: 197px;
+	left:-1px;
+	width: auto;
+	height: auto;
+	
+	background-color: transparent;
+	
+	
+    }
 
 #robotConnection {
 
@@ -163,9 +177,10 @@ button:active {
 
 
 #button1{
-
+	top: 200px;
     border: outset;
     border-color: #f88147;
+	right: 50px;
 }
 
 
@@ -213,5 +228,6 @@ button:active {
     width: 56vh;
     left: 0;
     border-right: groove #000000 1vh;
+
 
 }

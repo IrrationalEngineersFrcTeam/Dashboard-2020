@@ -4,13 +4,7 @@
 
 var ui = {
 	
-
-ui.button1.onclick = function () {
-	
-	document.getElementById('target').innerHTML = 'Target acquired 👀';	
-	
-};
-
+	button1: document.getElementById('button1'),
 
 
     timer: document.getElementById('timer'),
@@ -27,29 +21,70 @@ ui.button1.onclick = function () {
         visualValue: 0,
         resetValue: 0
     },
+	
 
-    PositionSelector: {
-        buttonGroup1: document.getElementById('buttonGroup1'),
-        button1: document.getElementById('button1'),
-        button2: document.getElementById('button2'),
-        button3: document.getElementById('button3'),
-
-    },
-	
-	GotTarget :{
-		
-		target: document.getElementById('target')
-		},
-	
-	
 
 };
 
 
+	
+
+
+
 NetworkTables.addGlobalListener(onValueChanged, true);
+
 NetworkTables.addRobotConnectionListener(onRobotConnection, true);
 
+NetworkTables.addKeyListener("/limelight/tv",targetFound,true);
 
+function targetFound (key, value, isNew){
+	
+		 
+     if(value === 1) {
+		
+       document.getElementById('target').innerHTML = "Target acquired 👀";
+	   document.getElementById('target').style.color = "#00d500";
+	   
+    } else {
+
+		
+		document.getElementById('target').innerHTML = "No target 🌚";
+		document.getElementById('target').style.color = "#d50000";//;
+		}
+    // do something with the values as they change
+};
+
+
+
+NetworkTables.putValue("/limelight/stream", 2); //set on init
+
+var toggle = false;
+
+button1.addEventListener ("click", function() {
+
+if(toggle === true){
+NetworkTables.putValue("/limelight/stream", 0);
+document.getElementById("camera").style.width = "1280px";
+document.getElementById("camera").style.left = "0px";
+	
+toggle = false;
+
+} else{
+NetworkTables.putValue("/limelight/stream", 2);	
+	
+toggle = true;
+document.getElementById("camera").style.width = "640px";
+document.getElementById("camera").style.left = "362px";
+}
+
+ });
+
+//document.getElementById("Save").onclick
+
+	//button1.onclick = function() {
+	
+//	NetworkTables.putValue("/limelight/stream", 2);
+	
 
 function onRobotConnection(connected) {
     var state = connected ?   'Robot connected' : 'Robot disconnected';
@@ -57,18 +92,8 @@ function onRobotConnection(connected) {
     ui.robotConnection.innerHTML = state;
 }
 
-NetworkTables.addRobotConnectionListener(function(targetFound) {
-    if(targetFound == true) {
-		
-       document.getElementById('target').innerHTML = 'Target acquired 👀';
-	   document.getElementById('target').style.color = #00d500;
-	   
-    } else {
-		
-		document.getElementById('target').innerHTML = 'No target';
-		document.getElementById('target').style.color = #00d500;
-    }
-}//, true);
+
+  
 		
 
 		if(NetworkTables.isRobotConnected === true) {
@@ -145,7 +170,7 @@ NetworkTables.addRobotConnectionListener(function(targetFound) {
     }
 
 
-    ui.Minimap.onclick = function () {
+ui.Minimap.onclick = function () {
 
         ui.Minimap.offset = ui.Minimap.Value;
 
@@ -154,7 +179,9 @@ NetworkTables.addRobotConnectionListener(function(targetFound) {
 };
 
 
-}
+
+
+	
 
 
 

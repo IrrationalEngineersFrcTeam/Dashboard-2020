@@ -7,20 +7,35 @@
     <title>FRC Dashboard 2020</title>
     <link rel="stylesheet" href="css/style.css"
 	/>
-	<script src="/networktables/networktables.js"></script>
-	<script src="ui.js"></script>
+	
 	
 </head>
 
 <body>
 
-<div class=print_block"></div> 
+<div class="print_block"></div> 
+
+
+
 
 <div id="title">Team 6239 SmartDashboard</div>
 <div id="rightBlock"></div>
 <div id="leftBlock"></div>
 <div id="timer">2:30</div>
-<div id = "camera"></div>
+
+<div class = "cameraBox">
+<div id='camera'>
+<div id="crosshair">
+<img src="img/crosshairorange.png" class="crosshair"/>
+</div>
+</div>
+</div>
+
+
+
+
+
+
 
 
 <div id="robotConnection">Unknown Robot State</div>
@@ -28,7 +43,6 @@
 
 
 
-<button id="button1" type="button">test</button>
 
 	
 </div>
@@ -43,9 +57,10 @@
 </svg>
 
 <div id="target">Unknown Target State</div>
+<button id="button1" type="button">Camera Mode</button>
 
-
-
+<script src="/networktables/networktables.js"></script>
+	<script src="ui.js"></script>
 
 </body>
 
