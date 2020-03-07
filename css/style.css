@@ -176,7 +176,7 @@ button:active {
 }
 
 #debug {
-	right: 200px;
+	right: 120px;
 	top: 5px;
 	font-family: "Consolas";
 }
@@ -244,6 +244,19 @@ button:active {
 	
 	
     }
+	
+#TAL {
+	
+	position: relative;
+	
+	width: auto;
+	height: auto;
+	
+	background-color: transparent;
+	
+		
+	
+}
 
 #robotConnection {
 

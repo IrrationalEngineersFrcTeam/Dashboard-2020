@@ -55,6 +55,8 @@ function targetOffset () {
 	
 	var teeX = NetworkTables.getValue("/limelight/tx", -99)
 	var teeY = NetworkTables.getValue("/limelight/ty", -99)
+	var teeX0 = NetworkTables.getValue("/limelight/tx0", -99)
+	var teeY0 = NetworkTables.getValue("/limelight/ty0", -99)
 	var teeHor = NetworkTables.getValue("/limelight/thor", -99)
 	var teeVert = NetworkTables.getValue("/limelight/tvert", -99)
 	
@@ -84,6 +86,8 @@ function targetOffset () {
 		targFlag = false;
 		
 	}
+	
+	
 }
 
 function targetFound (key, value, isNew){
@@ -93,6 +97,7 @@ function targetFound (key, value, isNew){
 		
        document.getElementById('target').innerHTML = "Target acquired 👀";
 	   document.getElementById('target').style.color = "#00d500";
+	   
 	   
     } else {
 
@@ -142,7 +147,7 @@ if(toggle === false){
 	document.getElementById("camera").style.left = "43px";
 	document.getElementById("crosshair").style.left = "320px"; //actually 960px from the left but the div pos is relative
 	toggle = true;
-	
+	mode0 = true;
 	
 	
 	
@@ -155,6 +160,7 @@ if(toggle === false){
 	document.getElementById("camera").style.left = "362px";
 	document.getElementById("crosshair").style.left = "-1px";
 	toggle = false;
+	
 	
 	
 	
@@ -187,6 +193,20 @@ buttonR.addEventListener ("click", function() {
 	
 });
 
+var LEDMode = true;
+
+LEDToggle.addEventListener ("click", function() {
+	
+	if(LEDMode) {
+		NetworkTables.putValue("/limelight/ledMode", 0);
+		LEDMode = false;
+	} else {
+		NetworkTables.putValue("/limelight/ledMode", 1);
+		LEDMode = true;
+	//alert(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
+	}
+});
+
 
 //document.getElementById("Save").onclick
 
@@ -207,7 +227,7 @@ function onRobotConnection(connected) {
 
 		if(NetworkTables.isRobotConnected === true) {
 			
-				document.getElementById('target').innerHTML = 'No target';
+			//	document.getElementById('target').innerHTML = 'No target';
 				
 		}
 
@@ -286,6 +306,10 @@ ui.Minimap.onclick = function () {
         onValueChanged('/SmartDashboard/drive/navX/yaw', ui.Minimap.Value);
 
 };
+
+function debug(string) {
+	document.getElementById("debugFeed").innerHTML = string;
+}
 
 
 
