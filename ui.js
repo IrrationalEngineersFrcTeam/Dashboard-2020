@@ -39,7 +39,7 @@ var ui = {
 
 	
 
-
+NetworkTables.addKeyListener("/SmartDashboard/teleOpInit",initTeleCam,true);
 
 NetworkTables.addGlobalListener(onValueChanged, true);
 
@@ -67,7 +67,7 @@ function targetOffset () {
 	var targInRange = false;
 		
 	if(Math.abs(teeX) <= 3.5 && Math.abs(teeY) <= 3.5  && (teeX && teeY) != 0 || (Math.abs(NetworkTables.getValue("/limelight/thor",-1)) > 40 && Math.abs(NetworkTables.getValue("/limelight/tvert",-1)) > 45 && Math.abs(teeX) <= 10.5 && Math.abs(teeY) <= 10.5  && (teeX && teeY) != 0 ) ) {
-		targInRange = true;
+		targInRange = true; //lol
 	}
 		 
 	if(targInRange){
@@ -117,19 +117,32 @@ IT WILL REQUIRE A RE-FLASH!!!!!
 
 var toggle = true;
 
+function initTeleCam (key, value, isNew){
+	
+	if(key.getValue === 2)
+		NetworkTables.putValue("/limelight/stream", 2);
+	
+	document.getElementById("buttonL").style.visibility='hidden';
+	document.getElementById("buttonM").style.visibility='hidden';
+	document.getElementById("buttonR").style.visibility='hidden';
+	document.getElementById("autoHeader").style.visibility='hidden';
+	
+}
+
 button1.addEventListener ("click", function() {
 	
 
 
 
 
-if(toggle === true){
+if(toggle === false){
 	
-	//NetworkTables.putValue("/limelight/ledMode", 0);
+	//NetworkTables.putValue("/limelight/ledMode", 0); //these were for testing
 	NetworkTables.putValue("/limelight/stream", 0);	
 	document.getElementById("camera").style.width = "1280px";
-	document.getElementById("camera").style.left = "0px";
-	toggle = false;
+	document.getElementById("camera").style.left = "43px";
+	document.getElementById("crosshair").style.left = "320px"; //actually 960px from the left but the div pos is relative
+	toggle = true;
 	
 
 } else{
@@ -137,8 +150,9 @@ if(toggle === true){
 	NetworkTables.putValue("/limelight/stream", 2);	 
 	document.getElementById("camera").style.width = "640px";
 	document.getElementById("camera").style.left = "362px";
+	document.getElementById("crosshair").style.left = "-1px";
 
-	toggle = true;
+	toggle = false;
 	
 }
 
@@ -166,6 +180,7 @@ buttonR.addEventListener ("click", function() {
 	//alert(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
 	
 });
+
 
 //document.getElementById("Save").onclick
 
@@ -233,14 +248,14 @@ function onRobotConnection(connected) {
                             // Stop countdown when timer reaches zero
                             clearTimeout(countdown);
                             return;
+                        } else if (s <= 75 && s > 30) {
+
+                            ui.timer.style.color = 'yellow';
                         } else if (s <= 30) {
 
                             ui.timer.style.color = 'red';
 
-                        } else if (s <= 75) {
-
-                            ui.timer.style.color = 'yellow';
-                        }
+                        } 
                         ui.timer.innerHTML = m + ':' + visualS;
                     }, 1000);
                 } else {
