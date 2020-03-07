@@ -1,6 +1,6 @@
 
 
-
+document.getElementById("cImg").src = "img/crosshairorange.png";
 
 var ui = {
 	
@@ -22,6 +22,16 @@ var ui = {
         resetValue: 0
     },
 	
+	autoSelect: {
+
+    autoSelect: document.getElementById('button-group1'),
+    buttonL: document.getElementById('buttonL'),
+    buttonM: document.getElementById('buttonM'),
+    buttonR: document.getElementById('buttonR'),
+
+
+},
+	
 
 
 };
@@ -36,6 +46,45 @@ NetworkTables.addGlobalListener(onValueChanged, true);
 NetworkTables.addRobotConnectionListener(onRobotConnection, true);
 
 NetworkTables.addKeyListener("/limelight/tv",targetFound,true);
+
+NetworkTables.addKeyListener("/limelight/ty",targetOffset,true);
+
+var targFlag = false ;
+
+function targetOffset () {
+	
+	var teeX = NetworkTables.getValue("/limelight/tx", -99)
+	var teeY = NetworkTables.getValue("/limelight/ty", -99)
+	var teeHor = NetworkTables.getValue("/limelight/thor", -99)
+	var teeVert = NetworkTables.getValue("/limelight/tvert", -99)
+	
+	document.getElementById('tx').innerHTML ="tx: " +teeX;
+	document.getElementById('ty').innerHTML ="ty: " +teeY;
+	document.getElementById('thor').innerHTML ="thor: " +teeHor;
+	document.getElementById('tvert').innerHTML ="tvert: " +teeVert;
+	
+	
+	var targInRange = false;
+		
+	if(Math.abs(teeX) <= 3.5 && Math.abs(teeY) <= 3.5  && (teeX && teeY) != 0 || Math.abs(NetworkTables.getValue("/limelight/thor",-1)) > 35 || NetworkTables.getValue("/limelight/tvert",-1) > 35 ) {
+		targInRange = true;
+	}
+		 
+	if(targInRange){
+		
+		if(!targFlag){
+				
+			document.getElementById("cImg").src = "img/crosshairred.png";
+			targFlag = true;
+		}
+	
+	} else if(!targInRange && targFlag) {
+			
+		document.getElementById("cImg").src = "img/crosshairorange.png";
+		targFlag = false;
+		
+	}
+}
 
 function targetFound (key, value, isNew){
 	
@@ -55,29 +104,58 @@ function targetFound (key, value, isNew){
 };
 
 
-
 NetworkTables.putValue("/limelight/stream", 2); //set on init
 
-var toggle = false;
+var toggle = true;
 
 button1.addEventListener ("click", function() {
+	
+
+
+
 
 if(toggle === true){
-NetworkTables.putValue("/limelight/stream", 0);
-document.getElementById("camera").style.width = "1280px";
-document.getElementById("camera").style.left = "0px";
+		
+	NetworkTables.putValue("/limelight/stream", 0);	
+	document.getElementById("camera").style.width = "1280px";
+	document.getElementById("camera").style.left = "0px";
+	toggle = false;
 	
-toggle = false;
 
 } else{
-NetworkTables.putValue("/limelight/stream", 2);	
+	//NetworkTables.putValue("/limelight/ledMode", 2);	
+	NetworkTables.putValue("/limelight/stream", 2);	
+	document.getElementById("camera").style.width = "640px";
+	document.getElementById("camera").style.left = "362px";
+
+	toggle = true;
 	
-toggle = true;
-document.getElementById("camera").style.width = "640px";
-document.getElementById("camera").style.left = "362px";
 }
 
- });
+//alert(NetworkTables.getValue("/limelight/ledMode", -99));	
+
+});
+
+buttonL.addEventListener ("click", function() {
+	
+	NetworkTables.putValue("/SmartDashboard/autonomousPos", 'L');
+	//alert(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
+	
+});
+
+buttonM.addEventListener ("click", function() {
+	
+	NetworkTables.putValue("/SmartDashboard/autonomousPos", 'M');
+	//alert(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
+	
+});
+
+buttonR.addEventListener ("click", function() {
+	
+	NetworkTables.putValue("/SmartDashboard/autonomousPos", 'R');
+	//alert(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
+	
+});
 
 //document.getElementById("Save").onclick
 

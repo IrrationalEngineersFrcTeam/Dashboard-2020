@@ -62,7 +62,7 @@ input[type="text"],
 input[type="number"],
 .buttonGroup1,
 button {
-
+	top: 400px;
     border-color: #f88147;
     display: block;
     padding: 10px 20px;
@@ -86,20 +86,90 @@ button:active {
     transform: translateY(2px);
 }
 
+.button-group1 {
+	
+	top: 300px;
+	right: 5vw;
+	
+}
+
 
 
  #target {
 
-    font-family: "Impact";
-    font-size: 3vh;
+    font-family: "impact";
+    font-size: 6vh;
     color: orange;
 	
 	text-align:right;
 	
-	right: 5vw;
+	left: 1vw;
 	top: 10vw;
  
 }
+
+#tx{
+
+    font-family: "impact";
+    font-size: 4vh;
+    color: orange;
+	
+	text-align:right;
+	
+	left: 1vw;
+	top: 20vw;
+ 
+}
+
+#ty{
+
+    font-family: "impact";
+    font-size: 4vh;
+    color: orange;
+	
+	text-align:right;
+	
+	left: 1vw;
+	top: 25vw;
+ 
+}
+
+#thor{
+
+    font-family: "impact";
+    font-size: 4vh;
+    color: orange;
+	
+	text-align:right;
+	
+	left: 1vw;
+	top: 30vw;
+ 
+}
+
+#tvert{
+
+    font-family: "impact";
+    font-size: 4vh;
+    color: orange;
+	
+	text-align:right;
+	
+	left: 1vw;
+	top: 35vw;
+ 
+}
+
+#autoHeader {
+  top: 250px;
+  font-size:15px;
+  line-height: 20px;
+  text-align: right;
+  right: 5vw;
+  color: orange;
+
+}
+
 
 
  #title {

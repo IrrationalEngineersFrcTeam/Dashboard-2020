@@ -23,29 +23,27 @@
 <div id="leftBlock"></div>
 <div id="timer">2:30</div>
 
+
+
 <div class = "cameraBox">
 <div id='camera'>
+
 <div id="crosshair">
-<img src="img/crosshairorange.png" class="crosshair"/>
+<img id="cImg">
+</img>
+</div>
+
+
 </div>
 </div>
-</div>
-
-
-
-
 
 
 
 
 <div id="robotConnection">Unknown Robot State</div>
-
-
-
-
-
 	
 </div>
+
 
 
 
@@ -56,8 +54,22 @@
     <polygon points="-5,9 0,-2 5,9 -5,9" fill="orange"></polygon>
 </svg>
 
+<div class="button-group1">
+            <button id="buttonL" type="button">Left</button>
+            <button id="buttonM" type="button">Center</button>
+            <button id="buttonR" type="button">Right</button>
+</div>
+
 <div id="target">Unknown Target State</div>
 <button id="button1" type="button">Camera Mode</button>
+
+<div id="autoHeader">Autonomous Selection</div>
+
+<div id="tx">0.0</div>
+<div id="ty">0.0</div>
+<div id="thor">0.0</div>
+<div id="tvert">0.0</div>
+
 
 <script src="/networktables/networktables.js"></script>
 	<script src="ui.js"></script>
