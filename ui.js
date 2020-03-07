@@ -103,8 +103,17 @@ function targetFound (key, value, isNew){
     // do something with the values as they change
 };
 
+/**==============================================================
 
-NetworkTables.putValue("/limelight/stream", 2); //set on init
+PSA! NEVER EVER USE THIS LINE OF CODE OUTSIDE OF A FUNCTION!
+
+//NetworkTables.putValue("/limelight/stream", 2); //set on init
+
+IT WILL BREAK THE NETWORKTABLE VALUE IN THE FIRMWARE ON THE LIMELIGHT!!!!!!!!!!!!!!!!!
+IT WILL REQUIRE A RE-FLASH!!!!!
+
+==================================================================**/
+
 
 var toggle = true;
 
@@ -115,7 +124,8 @@ button1.addEventListener ("click", function() {
 
 
 if(toggle === true){
-		
+	
+	//NetworkTables.putValue("/limelight/ledMode", 0);
 	NetworkTables.putValue("/limelight/stream", 0);	
 	document.getElementById("camera").style.width = "1280px";
 	document.getElementById("camera").style.left = "0px";
@@ -124,7 +134,7 @@ if(toggle === true){
 
 } else{
 	//NetworkTables.putValue("/limelight/ledMode", 2);	
-	NetworkTables.putValue("/limelight/stream", 2);	
+	NetworkTables.putValue("/limelight/stream", 2);	 
 	document.getElementById("camera").style.width = "640px";
 	document.getElementById("camera").style.left = "362px";
 
