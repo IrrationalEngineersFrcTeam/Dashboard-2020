@@ -175,6 +175,17 @@ button:active {
 
 }
 
+#debug {
+	right: 200px;
+	top: 5px;
+	font-family: "Consolas";
+}
+
+#debugFeed {
+	
+	background-color: black;
+	
+}
 
 
  #title {

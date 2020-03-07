@@ -138,21 +138,22 @@ button1.addEventListener ("click", function() {
 if(toggle === false){
 	
 	//NetworkTables.putValue("/limelight/ledMode", 0); //these were for testing
-	NetworkTables.putValue("/limelight/stream", 0);	
+	NetworkTables.putValue("/limelight/stream", 2);	
 	document.getElementById("camera").style.width = "1280px";
 	document.getElementById("camera").style.left = "43px";
 	document.getElementById("crosshair").style.left = "320px"; //actually 960px from the left but the div pos is relative
 	toggle = true;
+	document.getElementById("debugFeed").innerHTML = (NetworkTables.getValue("/limelight/stream", -99));
 	
 
 } else{
 	//NetworkTables.putValue("/limelight/ledMode", 2);	
-	NetworkTables.putValue("/limelight/stream", 2);	 
+	NetworkTables.putValue("/limelight/stream", 0);	 
 	document.getElementById("camera").style.width = "640px";
 	document.getElementById("camera").style.left = "362px";
 	document.getElementById("crosshair").style.left = "-1px";
-
 	toggle = false;
+	document.getElementById("debugFeed").innerHTML = (NetworkTables.getValue("/limelight/stream", -99));
 	
 }
 
