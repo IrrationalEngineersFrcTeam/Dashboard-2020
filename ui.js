@@ -66,7 +66,7 @@ function targetOffset () {
 	
 	var targInRange = false;
 		
-	if(Math.abs(teeX) <= 3.5 && Math.abs(teeY) <= 3.5  && (teeX && teeY) != 0 || Math.abs(NetworkTables.getValue("/limelight/thor",-1)) > 35 || NetworkTables.getValue("/limelight/tvert",-1) > 35 ) {
+	if(Math.abs(teeX) <= 3.5 && Math.abs(teeY) <= 3.5  && (teeX && teeY) != 0 || (Math.abs(NetworkTables.getValue("/limelight/thor",-1)) > 40 && Math.abs(NetworkTables.getValue("/limelight/tvert",-1)) > 45 && Math.abs(teeX) <= 10.5 && Math.abs(teeY) <= 10.5  && (teeX && teeY) != 0 ) ) {
 		targInRange = true;
 	}
 		 
