@@ -124,7 +124,7 @@ var toggle = true;
 
 function initTeleCam (key, value, isNew){
 	
-	if(key.getValue === 2)
+	if(key.getValue === true)
 		NetworkTables.putValue("/limelight/stream", 2);
 	
 	document.getElementById("buttonL").style.visibility='hidden';
@@ -177,6 +177,8 @@ buttonL.addEventListener ("click", function() {
 	NetworkTables.putValue("/SmartDashboard/autonomousPos", 'L');
 	//alert(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
 	
+	debug(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
+	
 });
 
 buttonM.addEventListener ("click", function() {
@@ -184,12 +186,16 @@ buttonM.addEventListener ("click", function() {
 	NetworkTables.putValue("/SmartDashboard/autonomousPos", 'M');
 	//alert(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
 	
+	debug(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
+	
 });
 
 buttonR.addEventListener ("click", function() {
 	
 	NetworkTables.putValue("/SmartDashboard/autonomousPos", 'R');
 	//alert(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
+	
+	debug(NetworkTables.getValue("/SmartDashboard/autonomousPos", 'N'));
 	
 });
 
