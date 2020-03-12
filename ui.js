@@ -60,6 +60,7 @@ function targetOffset () {
 	var teeHor = NetworkTables.getValue("/limelight/thor", -99)
 	var teeVert = NetworkTables.getValue("/limelight/tvert", -99)
 	
+	
 	document.getElementById('tx').innerHTML ="tx: " +teeX;
 	document.getElementById('ty').innerHTML ="ty: " +teeY;
 	document.getElementById('thor').innerHTML ="thor: " +teeHor;
@@ -93,9 +94,9 @@ function targetOffset () {
 function targetFound (key, value, isNew){
 	
 		 
-     if(value === 1) {
+     if(value === 1 && NetworkTables.getValue("/SmartDashboard/dist", 5) >= 2.5 {
 		
-       document.getElementById('target').innerHTML = "Target acquired 👀";
+       document.getElementById('target').innerHTML = "Valid target acquired 👀";
 	   document.getElementById('target').style.color = "#00d500";
 	   
 	   
